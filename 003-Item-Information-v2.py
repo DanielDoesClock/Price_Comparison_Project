@@ -1,16 +1,14 @@
-"""This is my Base for my Comparison Project.
-This will hold my plans for the project.
-Each component will be made in it's own file
-and when completed added into this one.
-When all parts are added it will create the final project file.
+"""This is the 2nd component of my price comparison project.
+This second version will make sure the user can not input any silly values into
+the questions.
 Made by Daniel Fraser
-5/5/22"""
+13/05/22"""
 
-# Import statements
+item_names = []
+item_prices = []
+item_weights = []
 
 
-# Functions
-# Function to check for blank answer
 def blank_check(ask_value):
     while True:
         response = input(ask_value).title()
@@ -20,7 +18,6 @@ def blank_check(ask_value):
             return response    # Returns name
 
 
-# Function to check for variables
 def int_check(question):
     number = ""
     while not number:
@@ -36,7 +33,6 @@ def int_check(question):
             print("\nPlease enter a number (Does not have to be whole)")
 
 
-# Function that asks for the item's information
 def item_info():
     more_items = blank_check("Do you want to compare an item? >> ").lower()
     # List of answers that the user could say that indicate they want to or do
@@ -46,47 +42,20 @@ def item_info():
     while more_items in yes_ans:
         name = blank_check("What is the name of the product? >> ")
         item_names.append(name)    # Puts into list
-        price = int_check(f"What is the price of one {name}? >> $")
+        price = int_check(f"What is the price of one {name}? >> ")
         item_prices.append(price)    # Puts into list
-        weight = int_check(f"What is the net weight of one {name}? "
-                           f"(In grams) >> ")
+        weight = int_check(f"What is the net weight of one {name}? (In grams)"
+                           f" >> ")
         item_weights.append(weight)    # Puts into list
         more_items = blank_check("Do you want to compare an item? >> ").lower()
     if more_items in no_ans:
-        best_value_()   # Goes to the next part of the code
+        print("End")    # Temp end message
     else:
         print("Please answer with 'Yes' or 'No'")
         item_info()    # Loops the code
 
 
-# Function for finding out which item is the best for its amount
-def best_value_():
-    for i in range(0, len(item_names)):
-        item_worth.append(item_weights[i] / item_prices[i])
-        # Made list to find the worth of the item
-    best_value = item_worth.index(max(item_worth))
-    print(f"\nThe best value item is **** {item_names[best_value]} ****\n")
-
-
-# Function for working out which is the best option based on budget
-
-# *** Main Routine ***
-# Lists to hold data
-item_names = []
-item_prices = []
-item_weights = []
-item_worth = []
-# Variables and constants
-
-# Introduction and instructions
-
-# Ask for user's budget
-budget = int_check("What is your budget? >> $")
-print(f"Your budget is ${budget:,.2f}")
-
-# Beginning the item information loop
 item_info()
-
-# Tell user which is the best for it's weight
-
-# Tell user the recommended item based on price, amount and budget
+print(item_names)
+print(item_prices)
+print(item_weights)

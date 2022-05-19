@@ -1,16 +1,16 @@
-"""This is my Base for my Comparison Project.
-This will hold my plans for the project.
-Each component will be made in it's own file
-and when completed added into this one.
-When all parts are added it will create the final project file.
-Made by Daniel Fraser
-5/5/22"""
+"""This is my 3rd component for my Price Comparison project.
+This component will use component 2 to find the information of the product
+and use that information to tell the user which is the best to buy based on the
+net weight and the price.
+Made By Daniel Fraser
+19/05/22"""
 
-# Import statements
+item_names = []
+item_prices = []
+item_weights = []
+item_worth = []
 
 
-# Functions
-# Function to check for blank answer
 def blank_check(ask_value):
     while True:
         response = input(ask_value).title()
@@ -59,7 +59,6 @@ def item_info():
         item_info()    # Loops the code
 
 
-# Function for finding out which item is the best for its amount
 def best_value_():
     for i in range(0, len(item_names)):
         item_worth.append(item_weights[i] / item_prices[i])
@@ -68,25 +67,4 @@ def best_value_():
     print(f"\nThe best value item is **** {item_names[best_value]} ****\n")
 
 
-# Function for working out which is the best option based on budget
-
-# *** Main Routine ***
-# Lists to hold data
-item_names = []
-item_prices = []
-item_weights = []
-item_worth = []
-# Variables and constants
-
-# Introduction and instructions
-
-# Ask for user's budget
-budget = int_check("What is your budget? >> $")
-print(f"Your budget is ${budget:,.2f}")
-
-# Beginning the item information loop
 item_info()
-
-# Tell user which is the best for it's weight
-
-# Tell user the recommended item based on price, amount and budget

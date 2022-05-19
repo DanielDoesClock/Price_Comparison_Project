@@ -6,12 +6,12 @@ Made by Daniel Fraser
 
 
 def budget_check(question):
-    number = ""
-    while not number:
+    budget2 = ""
+    while not budget2:
         # Asking for a number and checking if it is valid
         try:
-            number = float(input(question))
-            return number
+            budget2 = float(input(question))
+            return budget2
         except ValueError:
             print("\nPlease enter a number for your budget")
 
