@@ -1,17 +1,15 @@
-"""This is my Base for my Comparison Project.
-This will hold my plans for the project.
-Each component will be made in it's own file
-and when completed added into this one.
-Added my 4th component which tells the user which item is the best to buy
-if the best value item is out of budget
-Made by Daniel Fraser
-26/5/22"""
+"""This is my 4th component for my Price Comparison project.
+This 2nd version will make my code more efficient by adding a try statement
+to get rid of an item from all lists rather then individually
+Made By Daniel Fraser
+26/05/22"""
 
-# Import statements
+item_names = []
+item_prices = []
+item_weights = []
+item_worth = []
 
 
-# Functions
-# Function to check for blank answer
 def blank_check(ask_value):
     while True:
         response = input(ask_value).title()
@@ -21,7 +19,6 @@ def blank_check(ask_value):
             return response    # Returns name
 
 
-# Function to check for variables
 def int_check(question):
     number = ""
     while not number:
@@ -37,7 +34,6 @@ def int_check(question):
             print("\nPlease enter a number (Does not have to be whole)")
 
 
-# Function that asks for the item's information
 def item_info():
     more_items = blank_check("Do you want to compare an item? >> ").lower()
     # List of answers that the user could say that indicate they want to or do
@@ -60,7 +56,6 @@ def item_info():
         item_info()    # Loops the code
 
 
-# Function for finding out which item is the best for its amount
 def best_value_():
     for i in range(0, len(item_names)):
         item_worth.append(item_weights[i] / item_prices[i])
@@ -70,10 +65,10 @@ def best_value_():
 
     else:
         best_value = item_worth.index(max(item_worth))
-        print(f"\nThe best value item is **** {item_names[best_value]} ****\n")
+        print(f"\nThe best value item is *** {item_names[best_value]} ***\n")
+    best_buy_()  # Loops to next part of code
 
 
-# Function for working out which is the best option based on budget
 def best_buy_():
     best_value = item_worth.index(max(item_worth))
     best_value_name = item_names[best_value]
@@ -112,21 +107,7 @@ def best_buy_():
                       f"${item_prices[best_value]}")
 
 
-# *** Main Routine ***
-# Lists to hold data
-item_names = []
-item_prices = []
-item_weights = []
-item_worth = []
-# Variables and constants
-
-# Introduction and instructions
-
-# Ask for user's budget
+# Main Routine
 budget = int_check("What is your budget? >> $")
 print(f"Your budget is ${budget:,.2f}")
-
-# Beginning the item information loop
 item_info()
-
-

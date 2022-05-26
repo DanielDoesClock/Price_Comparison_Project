@@ -65,7 +65,7 @@ def best_value_():
 
     else:
         best_value = item_worth.index(max(item_worth))
-        print(f"\nThe best value item is **** {item_names[best_value]} ****\n")
+        print(f"\nThe best value item is *** {item_names[best_value]} ***\n")
     best_buy_()  # Loops to next part of code
 
 
@@ -81,7 +81,8 @@ def best_buy_():
         item_weights.remove(item_weights[best_value])
         item_prices.remove(item_prices[best_value])
         # Removing the too expensive item
-        while item_prices[best_value] > budget:
+        best_value = item_worth.index(max(item_worth))
+        while item_prices[best_value] > budget and len(item_prices) > 1:
             best_value = item_worth.index(max(item_worth))
             # Checking if the 2nd best item is within the budget
             item_names.remove(item_names[best_value])
@@ -89,19 +90,21 @@ def best_buy_():
             item_weights.remove(item_weights[best_value])
             item_prices.remove(item_prices[best_value])
             # If not, remove it and repeat
+            if len(item_worth) == 1:
+                best_value = 0
+                best_value_name = item_names[0]
+                print("\nThere are no items within your budget. It would be "
+                      f"best to go for * {best_value_name} * as it is the "
+                      f"cheapest item at ${item_prices[best_value]}")
+                # Message if no items are within budget
         best_value = item_worth.index(max(item_worth))
-        if len(item_worth) == 0:
-            print("There are no items within your budget.")
-            # Message if no items are within budget
         best_value_name = item_names[best_value]
-        print(f"The best option within your budget is {best_value_name}")
+        print(f"\nThe best option within your budget is "
+              f"*** {best_value_name} *** at ${item_prices[best_value]}")
 
 
 # Main Routine
 budget = int_check("What is your budget? >> $")
 print(f"Your budget is ${budget:,.2f}")
 item_info()
-print(item_names)
-print(item_prices)
-print(item_weights)
-print(item_worth)
+

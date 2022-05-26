@@ -2,8 +2,7 @@
 This will hold my plans for the project.
 Each component will be made in it's own file
 and when completed added into this one.
-Added my 4th component which tells the user which item is the best to buy
-if the best value item is out of budget
+Trialling something
 Made by Daniel Fraser
 26/5/22"""
 
@@ -39,24 +38,21 @@ def int_check(question):
 
 # Function that asks for the item's information
 def item_info():
-    more_items = blank_check("Do you want to compare an item? >> ").lower()
-    # List of answers that the user could say that indicate they want to or do
-    # not want to continue
-    yes_ans = ["y", "yes", "yup", "ok", "sure"]
-    no_ans = ["n", "no", "nope", "negative", "stop"]
-    while more_items in yes_ans:
-        name = blank_check("What is the name of the product? >> ")
+    name = blank_check("What is the name of the product? >> ").title()
+    if name != "X":
         item_names.append(name)    # Puts into list
+    while name != "X":
         price = int_check(f"What is the price of one {name}? >> $")
         item_prices.append(price)    # Puts into list
-        weight = int_check(f"What is the net weight of one {name}? "
-                           f"(In grams) >> ")
+        weight = int_check(f"What is the net weight of one {name}? (In grams)"
+                           f" >> ")
         item_weights.append(weight)    # Puts into list
-        more_items = blank_check("Do you want to compare an item? >> ").lower()
-    if more_items in no_ans:
-        best_value_()   # Goes to the next part of the code
+        name = blank_check("What is the name of the product? >> ").title()
+        if name != "X":
+            item_names.append(name)    # Puts into list
+    if name == "X":
+        best_value_()  # Goes to next part of the code
     else:
-        print("Please answer with 'Yes' or 'No'")
         item_info()    # Loops the code
 
 
@@ -83,7 +79,7 @@ def best_buy_():
               f"${item_prices[best_value]}")
         for i in [item_worth, item_prices, item_names, item_weights]:
             try:
-                i.remove(i[best_value])
+                i.pop(i[best_value])
             except ValueError:
                 pass
         # Removing the too expensive item
@@ -93,7 +89,7 @@ def best_buy_():
             # Checking if the 2nd best item is within the budget
             for i in [item_worth, item_prices, item_names, item_weights]:
                 try:
-                    i.remove(i[best_value])
+                    i.pop(i[best_value])
                 except ValueError:
                     pass
             # If not, remove it and repeat
@@ -128,5 +124,7 @@ print(f"Your budget is ${budget:,.2f}")
 
 # Beginning the item information loop
 item_info()
-
-
+print(item_worth)
+print(item_prices)
+print(item_names)
+print(item_weights)
