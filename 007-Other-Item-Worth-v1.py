@@ -1,8 +1,17 @@
-"""This is the 5th component in my Price Comparison Project
-This component will ask the user if they want to see a list of the other items
-listed by order of how much they are worth
+"""This is the 6th component in my Price Comparison Project
+This component will create a list with all item names and price
+sorted by worth
 Made By Daniel Fraser
 27/05/22"""
+
+
+def get_choice(choice, valid_choices):
+    choice_error = "Sorry, that is not a valid choice"
+    for list_item in valid_choices:
+        if choice in list_item:
+            choice = list_item[0].title()
+            return choice
+    print(choice_error)
 
 
 def blank_check(ask_value):
@@ -103,16 +112,33 @@ def best_buy_():
 
 
 def other_item_worth():
-    viable_ans = [["yes", "yup", "sure", "y"], ["no", "nope", "negative", "n"]]
     show_list = input("Would you like a list of all other items "
-                      "listed by worth? >> ")
-    if show_list == viable_ans[0]:
-        for i in item_names, item_weights, item_worth, item_prices:
-            all_info = []
-            i.append(all_info)
-        print(all_info)
+                      "listed by worth? >> ").lower()
+    viable_ans = [["yes", "yup", "sure", "y"], ["no", "nope", "negative", "n"]]
+    valid = get_choice(show_list, viable_ans)
+    if not valid:
+        print("Please enter with Y/N")
+        other_item_worth()
+    elif valid == "Yes":
+        sort_items()
+    else:
+        print("End I think")
 
 
+def sort_items():
+    item_num = 0
+    list_length = len(item_names)
+    while item_num < list_length:
+        sorted_list.append([])
+        sorted_list[item_num].append(item_worth[item_num])
+        sorted_list[item_num].append(item_names[item_num])
+        sorted_list[item_num].append(item_prices[item_num])
+        item_num += 1
+    print(sorted_list)
+
+
+sorted_list = []
+# This list assumes you are not comparing more than 5 items
 item_names = []
 item_prices = []
 item_weights = []
