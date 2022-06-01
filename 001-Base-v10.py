@@ -21,7 +21,7 @@ def item_info():
         weight = int_check(f"How many {unit_} of {name} are you getting?"
                            f" >> ")
         if unit_ == "l" or unit_ == "kg":  # Converts units
-            correct_weight = weight * 1000
+            correct_weight = weight / 1000
             item_weights.append(correct_weight)
         else:
             item_weights.append(weight)
