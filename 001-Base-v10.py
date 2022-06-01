@@ -16,9 +16,15 @@ def item_info():
     while name != "X":
         price = int_check(f"What is the price of one {name}? >> $")
         item_prices.append(price)    # Puts into list
-        weight = int_check(f"What is the net weight of one {name}? (In grams)"
+        unit_ = blank_check("What unit will you use to measure this item?"
+                            " >> ").lower()
+        weight = int_check(f"How many {unit_} of {name} are you getting?"
                            f" >> ")
-        item_weights.append(weight)    # Puts into list
+        if unit_ == "l" or unit_ == "kg":  # Converts units
+            correct_weight = weight * 1000
+            item_weights.append(correct_weight)
+        else:
+            item_weights.append(weight)
         name = blank_check("\nWhat is the name of the product? >> ").title()
         if name != "X":
             item_names.append(name)    # Puts into list
